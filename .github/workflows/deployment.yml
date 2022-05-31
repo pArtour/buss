@@ -19,12 +19,11 @@ jobs:
         logout: true
 
     - name: Build image
-      run: docker build -t arturpushkov/buss .
+      run: docker build -t 322810/buss .
     - name: Tag image
-      run: docker tag arturpushkov/buss
-                arturpushkov/buss:latest
+      run: docker tag buss 322810/buss:latest
     - name: Push to dockerhub
-      run: docker push arturpushkov/buss
+      run: docker push 322810/buss
 
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v14
