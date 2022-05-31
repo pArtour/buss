@@ -21,7 +21,7 @@ jobs:
     - name: Build image
       run: docker build -t 322810/buss .
     - name: Tag image
-      run: docker tag buss 322810/buss:latest
+      run: docker tag 322810/buss 322810/buss:latest
     - name: Push to dockerhub
       run: docker push 322810/buss
 
