@@ -32,4 +32,5 @@ jobs:
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         application_name: buss
         environment_name: Buss-env
+        version_label: ${{ github.sha }}
         region: eu-north-1
