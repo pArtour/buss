@@ -11,19 +11,24 @@ jobs:
     - name: checkout
       uses: actions/checkout@v2
 
-    - name: Docker Login
-      uses: docker/login-action@v1.8.0
-      with:
-        username: ${{secrets.DOCKERHUB_USERNAME}}
-        password: ${{secrets.DOCKERHUB_TOKEN}}
-        logout: true
-
     - name: Build image
       run: docker build -t 322810/buss .
-    - name: Tag image
-      run: docker tag 322810/buss 322810/buss:latest
-    - name: Push to dockerhub
-      run: docker push 322810/buss
+
+    - name: Generate Deployment Package
+      run: zip -r deploy.zip *
+
+    - name: Get timestamp
+      uses: gerred/actions/current-time@master
+      id: current-time
+
+    - name: Run string replace
+      uses: frabert/replace-string-action@master
+      id: format-time
+      with:
+        pattern: '[:\.]+'
+        string: "${{ steps.current-time.outputs.time }}"
+        replace-with: '-'
+        flags: 'g'
 
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v20
@@ -32,5 +37,6 @@ jobs:
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         application_name: buss
         environment_name: Buss-env
-        version_label: ${{ github.sha }}
+        version_label: "buss-${{ github.sha }}"
+        deployment_package: deploy.zip
         region: eu-north-1
