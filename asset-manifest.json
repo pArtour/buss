@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/buss/static/css/main.97ff8f26.css",
+    "main.js": "/buss/static/js/main.4422c95a.js",
+    "index.html": "/buss/index.html",
+    "main.97ff8f26.css.map": "/buss/static/css/main.97ff8f26.css.map",
+    "main.4422c95a.js.map": "/buss/static/js/main.4422c95a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.97ff8f26.css",
+    "static/js/main.4422c95a.js"
+  ]
+}
